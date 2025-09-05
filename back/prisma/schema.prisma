@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  username String    @unique
+  password String
+  categories Category[]
+  histories History[]
+  who       Who[]
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  parent    Category? @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId  Int?
+  children  Category[] @relation("CategoryToCategory")
+  name      String
+  histories History[]
+}
+
+model Who {
+  id     Int      @id @default(autoincrement())
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  name   String
+  histories History[]
+  @@unique([userId, name])
+}
+
+model History {
+  id             Int       @id @default(autoincrement())
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         Int
+  category       Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId     Int?
+  who            Who?      @relation(fields: [whoId], references: [id], onDelete: SetNull)
+  whoId          Int?
+  type           HistoryType
+  history        String
+  amount         Decimal   @db.Decimal(12,2)
+  description    String?
+  transactionDate DateTime
+}
+
+enum HistoryType {
+  income
+  expense
+}

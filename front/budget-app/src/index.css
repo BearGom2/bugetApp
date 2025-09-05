@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:focus{
+       outline: none !important
+}
+
+.input {
+    @apply rounded-lg h-fit py-2 border border-black text-base text-black px-4 mx-auto w-full
+}
+
+.button {
+    @apply rounded-lg h-full py-2 border border-black text-base text-white mx-auto w-full bg-black
+}
+
+.react-datepicker__day--in-range{
+    @apply bg-black !important
+}
+
+.react-datepicker__day--range-start{
+    @apply text-white !important
+}
+
+.react-datepicker__day--in-selecting-range, .react-datepicker__day--selecting-range-start, .react-datepicker__day--selecting-range-end{
+    @apply text-white bg-black !important
+}
+
+td{
+    @apply max-w-xs truncate px-6 py-4 text-sm text-gray-500
+}
+
+.react-datepicker__tab-loop{
+    @apply absolute
+}
+
+.react-datepicker-wrapper{
+    @apply block !important
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox  */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
