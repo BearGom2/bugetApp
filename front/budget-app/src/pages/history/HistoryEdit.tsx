@@ -20,6 +20,16 @@ import { getUserId } from "../../utils/getUserId";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
+  type FormData = {
+    transactionDate: Date;
+    history: string;
+    type: "income" | "expense";
+    amount: string;
+    description?: string;
+    category: string;
+    who: string;
+  };
+
 const HistoryEditPage = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -37,7 +47,7 @@ const HistoryEditPage = () => {
     }[]
   >([]);
 
-  const { register, setValue, watch, handleSubmit } = useForm({});
+  const { register, setValue, watch, handleSubmit } = useForm<FormData>({});
 
   useCategoryOptions(setCategoryOptions);
   useWhoOptions(setWhoOptions);
@@ -68,7 +78,7 @@ const HistoryEditPage = () => {
   const handleRemoveSplit = (index: number) => {
     const removed = splits[index].amount;
     setSplits(splits.filter((_, i) => i !== index));
-    setValue("amount", Number(watch("amount")) + removed);
+    setValue("amount", String(Number(watch("amount")) + removed));
   };
 
   const handleSplitAmountChange = (index: number, value: number) => {
@@ -77,10 +87,11 @@ const HistoryEditPage = () => {
     updated[index].amount = value;
 
     setSplits(updated);
-    setValue("amount", watch("amount") - (value || 0) + old);
+    const currentAmount = Number(watch("amount")) || 0;
+    setValue("amount", String(currentAmount - (value || 0) + old));
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     if (!baseData) return;
 
     const userId = getUserId();

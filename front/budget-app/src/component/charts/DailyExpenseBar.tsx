@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import type { History } from "../../Types";
 

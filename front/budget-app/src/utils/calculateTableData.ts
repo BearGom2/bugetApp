@@ -7,11 +7,11 @@ export const calculateTableData = (histories: History[]) => {
         new Date(a.transactionDate).getTime() -
         new Date(b.transactionDate).getTime()
     )
-    .reduce<{ rows: any[][]; balance: number; total: number }>(
+    .reduce<{ rows: (string | number)[][]; balance: number; total: number }>(
       (acc, history) => {
         const amount = Number(history.amount);
         const isExpense = history.type === "expense";
-        const newBalance = acc.balance + amount;
+        const newBalance = isExpense ? acc.balance - amount : acc.balance + amount;
         const newTotal = acc.total + (isExpense ? amount : 0);
 
         acc.rows.push([

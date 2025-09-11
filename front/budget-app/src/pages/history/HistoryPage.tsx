@@ -1,10 +1,12 @@
 import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
+
+import { type Option } from "../../Types";
 
 import Table from "../../component/Table";
 import Button from "../../component/Button";
@@ -13,7 +15,7 @@ import Search from "../../component/Search";
 
 import { useCategoryOptions } from "../../hooks/useCategoryOptions";
 import { useWhoOptions } from "../../hooks/useWhoOptions";
-import { fetchHistories, createHistory } from "../../service/historyService";
+import { createHistory } from "../../service/historyService";
 
 import { TABLE_TITLES } from "../../constants/tableTitles";
 import { filterHistories } from "../../utils/filterHistories";
@@ -33,10 +35,10 @@ const HistoryPage = () => {
     { label: "소득", value: "income" },
     { label: "지출", value: "expense" },
   ];
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Option[]>([]);
   useCategoryOptions(setCategories);
 
-  const [who, setWho] = useState<any[]>([]);
+  const [who, setWho] = useState<Option[]>([]);
   useWhoOptions(setWho);
 
   const [searchKeyword, setSearchKeyword] = useState<string>(
@@ -56,7 +58,7 @@ const HistoryPage = () => {
       const data = event.target?.result;
       const workbook = XLSX.read(data, { type: "binary", cellDates: true });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][];
+      const json = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as string[][];
 
       const userId = getUserId();
 
@@ -81,18 +83,18 @@ const HistoryPage = () => {
       };
 
       const applyKeyMap = (
-        raw: Record<string, any>,
+        raw: Record<string, unknown>,
         map: Record<string, string>
       ): Record<string, string> => {
         const result: Record<string, string> = {};
         for (const key in map) {
-          result[map[key]] = (raw[key] || "").toString().trim();
+          result[map[key]] = (raw[key] ?? "").toString().trim();
         }
         return result;
       };
 
       const normalized = rows.map((row) => {
-        const record: any = {};
+        const record: Record<string, string> = {};
         headers.forEach((h, i) => {
           record[h.trim()] = (row[i] || "").toString().trim();
         });
@@ -133,9 +135,9 @@ const HistoryPage = () => {
           transactionDate: transactionDate.toISOString(),
           history,
           categoryId:
-            Number(
-              categories.find((c) => c.label.trim() === "미분류")?.value
-            ) ?? null,
+            categories.find((c) => c.label.trim() === "미분류")?.value
+              ? Number(categories.find((c) => c.label.trim() === "미분류")?.value)
+              : null,
           amount,
           description,
           whoId: null,

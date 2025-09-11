@@ -27,5 +27,5 @@ export const useCategoryOptions = (
     };
 
     loadCategories();
-  }, []);
+  }, [setOptions]);
 };

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import DailyExpenseBar from "./DailyExpenseBar";
-import type { Category, History } from "../../Types";
+import type { History } from "../../Types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import CategorySunburst from "./CategorySunburst";
-import { fetchCategories } from "../../service/categoryService";
 
 interface Props {
   filteredHistories: History[];
