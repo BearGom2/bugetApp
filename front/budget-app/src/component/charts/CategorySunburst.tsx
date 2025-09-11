@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ResponsiveSunburst } from "@nivo/sunburst";
 import type { Category, History } from "../../Types";
 import { formatSunburstData } from "../../utils/formatSunburstData";

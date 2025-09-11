@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,6 +32,7 @@ const LoginPage = () => {
       navigate("/main");
       toast.success("로그인 성공!");
     } catch (error) {
+      console.error(error);
       setError("root", {
         message: "아이디 또는 비밀번호가 잘못되었습니다.",
       });

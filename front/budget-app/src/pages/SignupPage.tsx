@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,6 +40,7 @@ const SignupPage = () => {
       toast.success("회원가입이 완료되었습니다!");
       navigate("/login");
     } catch (err) {
+      console.error(err);
       setError("username", {
         message: "이미 사용 중인 아이디입니다.",
       });

@@ -1,4 +1,3 @@
-// src/components/DropdownMultiSelect.tsx
 import { Listbox } from "@headlessui/react";
 import { Check, ChevronDown } from "lucide-react"; // 선택 아이콘
 import React from "react";

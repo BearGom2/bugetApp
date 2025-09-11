@@ -1,6 +1,4 @@
-import { useState } from "react";
 import SearchIcon from "../assets/search.png";
-import React from "react";
 
 const Search = ({
   value,

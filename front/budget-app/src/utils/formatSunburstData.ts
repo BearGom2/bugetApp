@@ -57,7 +57,13 @@ export const formatSunburstData = (
     }
   }
 
-  const chartData: any = {
+  type SunburstEntry = {
+    name: string;
+    loc?: number;
+    children?: SunburstEntry[];
+  };
+
+  const chartData: SunburstEntry = {
     name: "총지출",
     children: Object.entries(result).map(([parent, children]) => ({
       name: parent,
@@ -72,6 +78,7 @@ export const formatSunburstData = (
   };
 
   if (uncategorized > 0) {
+    chartData.children = chartData.children || [];
     chartData.children.push({
       name: "미분류",
       loc: uncategorized,
