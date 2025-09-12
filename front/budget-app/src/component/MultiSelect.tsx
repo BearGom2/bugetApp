@@ -18,7 +18,6 @@ const MultiSelect = ({
   placeholder,
   disabled,
 }: Props) => {
-  // 검색어 관리 및 검색창 ref
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,14 +29,12 @@ const MultiSelect = ({
     }
   };
 
-  // 드롭다운을 열면 검색창에 커서 자동 이동
   const handleButtonClick = () => {
     setTimeout(() => {
       inputRef.current?.focus();
     }, 0);
   };
 
-  // 검색어에 따라 옵션 필터링
   const filteredOptions =
     searchQuery.trim().length > 0
       ? options.filter((opt) =>
