@@ -9,7 +9,7 @@ export const useFilterQuery = () => {
 
   const updateFilterQuery = (
     key: "type" | "category" | "who" | "date" | "keyword",
-    value: string[] | Date[] | string
+    value: string[] | (null | Date)[] | string
   ) => {
     const newParams = new URLSearchParams(params.toString());
 
@@ -32,7 +32,6 @@ export const useFilterQuery = () => {
       else newParams.delete("keyword");
     }
 
-    // ✅ URL만 바꾸되 히스토리엔 남기지 않음
     navigate({ search: newParams.toString() }, { replace: true });
   };
 

@@ -18,7 +18,6 @@ export const formatSunburstData = (
     childCategories.map((c) => [c.id, { name: c.name, parentId: c.parentId }])
   );
 
-  // 누적 구조: 대 → 소 → [{ history, amount }]
   const result: Record<
     string,
     Record<string, { name: string; amount: number }[]>
@@ -27,7 +26,7 @@ export const formatSunburstData = (
 
   for (const h of expenseHistories) {
     const category = h.category;
-    const amount = Number(-h.amount); // 지출 양수화
+    const amount = Number(-h.amount);
     const historyName = `${h.history} ${new Date(
       h.transactionDate
     ).getMonth()}월 ${new Date(h.transactionDate).getDate()}일`;

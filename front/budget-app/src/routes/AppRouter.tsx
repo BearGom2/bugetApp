@@ -1,4 +1,3 @@
-// src/routes/AppRouter.tsx
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";

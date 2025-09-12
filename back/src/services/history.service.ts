@@ -1,5 +1,3 @@
-// Who, Category는 프론트에서 구현
-
 import prisma from "../prisma";
 
 export const getHistories = (userId: number) =>
