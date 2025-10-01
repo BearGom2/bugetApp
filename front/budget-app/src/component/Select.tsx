@@ -18,10 +18,8 @@ const Select = ({
   placeholder,
   disabled,
 }: Props) => {
-
   const [searchQuery, setSearchQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-
 
   const handleButtonClick = () => {
     setTimeout(() => {
@@ -69,7 +67,9 @@ const Select = ({
               />
             </div>
             {filteredOptions.length === 0 && (
-              <div className="px-4 py-2 text-gray-500">검색 결과가 없습니다</div>
+              <div className="px-4 py-2 text-gray-500">
+                검색 결과가 없습니다
+              </div>
             )}
             {filteredOptions.map((option) => (
               <Listbox.Option

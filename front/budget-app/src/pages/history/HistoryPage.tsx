@@ -134,10 +134,9 @@ const HistoryPage = () => {
           type,
           transactionDate: transactionDate.toISOString(),
           history,
-          categoryId:
-            categories.find((c) => c.label.trim() === "미분류")?.value
-              ? Number(categories.find((c) => c.label.trim() === "미분류")?.value)
-              : null,
+          categoryId: categories.find((c) => c.label.trim() === "미분류")?.value
+            ? Number(categories.find((c) => c.label.trim() === "미분류")?.value)
+            : null,
           amount,
           description,
           whoId: null,

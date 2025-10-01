@@ -82,7 +82,9 @@ const MultiSelect = ({
               />
             </div>
             {filteredOptions.length === 0 && (
-              <div className="px-4 py-2 text-gray-500">검색 결과가 없습니다</div>
+              <div className="px-4 py-2 text-gray-500">
+                검색 결과가 없습니다
+              </div>
             )}
             {filteredOptions.map((option) => (
               <Listbox.Option
@@ -105,9 +107,7 @@ const MultiSelect = ({
                       />
                       <span>{option.label}</span>
                     </div>
-                    {isSelected && (
-                      <Check className="w-4 h-4 text-blue-600" />
-                    )}
+                    {isSelected && <Check className="w-4 h-4 text-blue-600" />}
                   </li>
                 )}
               </Listbox.Option>

@@ -4,7 +4,7 @@ import { useFilterQuery } from "../hooks/useFilterQuery";
 const TopBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { query, } = useFilterQuery();
+  const { query } = useFilterQuery();
   return (
     <div
       className={`w-screen px-5 bg-white border-b h-12 sticky top-0 justify-between items-center border-b-black bg-opacity-80 z-50 ${
