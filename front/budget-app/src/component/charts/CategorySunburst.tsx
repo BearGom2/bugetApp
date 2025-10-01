@@ -47,7 +47,7 @@ const CategorySunburst = ({ filteredHistories }: CategorySunburstProps) => {
       value="loc"
       cornerRadius={2}
       borderWidth={1}
-      colors={{ scheme: "nivo" }}
+      colors={{ scheme: "purple_blue_green" }}
       childColor={{ from: "color" }}
       motionConfig="gentle"
       isInteractive={true}
