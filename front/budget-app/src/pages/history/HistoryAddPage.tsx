@@ -72,7 +72,8 @@ const HistoryAddPage = () => {
         transactionDate: data.transactionDate.toISOString(),
         history: data.history,
         categoryId: data.category ? Number(data.category) : null,
-        amount: Number(data.amount),
+        amount:
+          data.type === "expense" ? -Number(data.amount) : Number(data.amount),
         description: data.description?.trim() || null,
         whoId: data.who ? Number(data.who) : null,
       });

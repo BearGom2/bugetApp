@@ -20,15 +20,15 @@ import { getUserId } from "../../utils/getUserId";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-  type FormData = {
-    transactionDate: Date;
-    history: string;
-    type: "income" | "expense";
-    amount: string;
-    description?: string;
-    category: string;
-    who: string;
-  };
+type FormData = {
+  transactionDate: Date;
+  history: string;
+  type: "income" | "expense";
+  amount: string;
+  description?: string;
+  category: string;
+  who: string;
+};
 
 const HistoryEditPage = () => {
   const { id } = useParams();
@@ -60,7 +60,7 @@ const HistoryEditPage = () => {
       setValue("transactionDate", new Date(data.transactionDate));
       setValue("history", data.history);
       setValue("type", data.type);
-      setValue("amount", data.amount);
+      setValue("amount", data.type === "expense" ? -data.amount : data.amount);
       setValue("category", String(data.category.id));
       setValue("description", data.description);
       setValue("who", String(data.who.id));
@@ -100,7 +100,10 @@ const HistoryEditPage = () => {
       transactionDate: data.transactionDate.toISOString(),
       history: data.history,
       type: data.type,
-      amount: parseInt(data.amount),
+      amount:
+        data.type === "expense"
+          ? -parseInt(data.amount)
+          : parseInt(data.amount),
       description: data.description || null,
       categoryId: parseInt(data.category),
       whoId: parseInt(data.who),
@@ -114,7 +117,7 @@ const HistoryEditPage = () => {
           transactionDate: data.transactionDate.toISOString(),
           history: data.history,
           categoryId: s.category ? parseInt(s.category) : null,
-          amount: s.amount,
+          amount: data.type === "expense" ? -s.amount : s.amount,
           description: s.description || null,
           whoId: s.who ? parseInt(s.who) : null,
         });
