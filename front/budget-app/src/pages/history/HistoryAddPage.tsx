@@ -133,13 +133,6 @@ const HistoryAddPage = () => {
               <p className="text-red-500 text-sm">{errors.history.message}</p>
             )}
           </div>
-
-          <Select
-            options={categoryOptions}
-            selected={watch("category") || ""}
-            onChange={(v) => setValue("category", v)}
-            placeholder="카테고리 선택"
-          />
           <div>
             <input
               type="number"
@@ -151,6 +144,13 @@ const HistoryAddPage = () => {
               <p className="text-red-500 text-sm">{errors.amount.message}</p>
             )}
           </div>
+
+          <Select
+            options={categoryOptions}
+            selected={watch("category") || ""}
+            onChange={(v) => setValue("category", v)}
+            placeholder="카테고리 선택"
+          />
 
           <input
             type="text"

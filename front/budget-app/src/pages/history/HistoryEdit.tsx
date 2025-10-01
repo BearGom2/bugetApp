@@ -165,16 +165,16 @@ const HistoryEditPage = () => {
             />
 
             <input {...register("history")} className="input w-full" />
+            <input
+              type="number"
+              {...register("amount")}
+              className="input w-full"
+            />
             <Select
               options={categoryOptions}
               selected={watch("category") || ""}
               onChange={(v) => setValue("category", v)}
               placeholder="카테고리"
-            />
-            <input
-              type="number"
-              {...register("amount")}
-              className="input w-full"
             />
             <input
               {...register("description")}
