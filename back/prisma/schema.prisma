@@ -49,6 +49,7 @@ model History {
   amount         Decimal   @db.Decimal(12,2)
   description    String?
   transactionDate DateTime
+  @@unique([userId, type, history, amount, transactionDate], name: "uq_history_dedupe")
 }
 
 enum HistoryType {

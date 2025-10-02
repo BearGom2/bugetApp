@@ -40,6 +40,7 @@ CREATE TABLE `History` (
     `description` VARCHAR(191) NULL,
     `transactionDate` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `History_userId_type_history_amount_transactionDate_key`(`userId`, `type`, `history`, `amount`, `transactionDate`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
