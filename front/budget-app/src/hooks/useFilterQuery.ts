@@ -5,7 +5,7 @@ export const useFilterQuery = () => {
   const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
-  const startMonth = new Date(currentYear, currentMonth, 1);
+  const startMonth = new Date(currentYear, currentMonth - 1, 1);
 
   const updateFilterQuery = (
     key: "type" | "category" | "who" | "date" | "keyword",
